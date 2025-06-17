@@ -12,7 +12,6 @@ This project is about finding toxic comments in text. It uses a machine learning
 📂 toxic-comment-detector/
 ├──  Assignment 3 (Major Project).ipynb  # Python code for training and testing
 ├── dataset(reduced).csv   # Small dataset for testing
-├── model.zip              # Trained model (upload this to GitHub)
 ├──  Assignment 3 (Major Project)report.pdf  # Project report
 ├── README.md                    # This file
 ├── requirements.txt             # Needed Python packages
