@@ -20,6 +20,8 @@ This project is about finding toxic comments in text. It uses a machine learning
 ---
 
 ## How to Use the Project
+Please download the model from below Google drive link:
+https://drive.google.com/file/d/1FftEmnOhYef-fYStSQ3Qmk_YXiDdxK_f/view?usp=sharing
 
 ### Step 1: Install Python Libraries
 
