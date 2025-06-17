@@ -1,48 +1,79 @@
 
 # Toxic Comment Classification using DistilBERT
 
-## Problem Statement
-Toxic comments on online platforms harm user experience and mental well-being. This project focuses on detecting toxic language in comments using natural language processing and fine-tuning a pre-trained model.
 
-## Dataset
-The dataset used is a subset of the Jigsaw Toxic Comment Classification dataset from Kaggle.
-- Total samples used: 5,000
-- Labels: 0 = Non-Toxic, 1 = Toxic
-- Columns used: `comment_text` and `toxic`
-
-## Model and Method
-- Base model: `distilbert-base-uncased`
-- Preprocessing: Tokenization using HuggingFace tokenizer
-- Truncation and padding applied
-- Fine-tuned using `Trainer` API from HuggingFace `transformers`
-- Split: 80% training, 20% test
-
-## Training Setup
-- Epochs: 2
-- Batch size: 16 (train), 32 (eval)
-- Optimizer: AdamW (default)
-- Learning rate: 2e-5
-
-## Evaluation
-- Metrics: Accuracy, Precision, Recall, F1-score
-- Confusion matrix plotted for test performance
-- Sample predictions reviewed manually
-
-## Insights
-- Token length analysis showed most comments are within safe limits for DistilBERT
-- Minor class imbalance observed
-- Model achieved strong performance metrics suitable for binary classification
-
-## Challenges
-- Class imbalance slightly impacted precision
-- Training time on Colab was limited, so full dataset not used
-
-## Future Work
-- Apply weighted loss or oversampling for class imbalance
-- Try RoBERTa or BERT-base for comparison
-- Perform hyperparameter tuning for further improvements
+This project is about finding toxic comments in text. It uses a machine learning model called DistilBERT. I trained it to say if a comment is toxic or not toxic.
 
 ---
 
-Author: Sadman Sakib
-Course: COMP8420
+## Files in This Project
+
+```
+📂 toxic-comment-detector/
+├──  Assignment 3 (Major Project).ipynb  # Python code for training and testing
+├── dataset(reduced).csv   # Small dataset for testing
+├── model.zip              # Trained model (upload this to GitHub)
+├──  Assignment 3 (Major Project)report.pdf  # Project report
+├── README.md                    # This file
+├── requirements.txt             # Needed Python packages
+```
+
+---
+
+## How to Use the Project
+
+### Step 1: Install Python Libraries
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 2: Run the Python Code
+
+Use Google Colab or Jupyter Notebook to open `comp8420_project.py`.
+
+---
+
+## How to Load the Trained Model
+
+After unzipping the model, you can load it like this:
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+model = AutoModelForSequenceClassification.from_pretrained("saved_model/")
+tokenizer = AutoTokenizer.from_pretrained("saved_model/")
+```
+
+---
+
+## Predict New Comment
+
+```python
+def predict_comment(text):
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    outputs = model(**inputs)
+    prediction = outputs.logits.argmax(dim=1).item()
+    return "Toxic" if prediction == 1 else "Not Toxic"
+
+# Try a comment
+print(predict_comment("I hate you!"))
+```
+
+---
+
+## What I Learned
+
+- Using a pre-trained model
+- Fine-tuning it for toxic comment detection
+- Working with datasets
+- Making predictions with Transformers library
+
+---
+
+## Author
+
+**Sadman Sakib**  
+Student ID: 48031275
+Email: sadman.sakib2@students.mq.edu.au  
+Macquarie University
