@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ### Step 2: Run the Python Code
 
-Use Google Colab or Jupyter Notebook to open `comp8420_project.py`.
+Use Google Colab or Jupyter Notebook to open `Assignment 3 (Major Project).ipynb`.
 
 ---
 
